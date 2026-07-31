@@ -20,7 +20,7 @@ calculation operands, confidence, and abstention.
 - 126 cases, 108 paired interventions, 18 groups, and 6 finance workflows;
 - English, French, and Chinese controlled variants;
 - deterministic core evaluator - no LLM judge required;
-- 115 tests, 93% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- 154 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
 - [zero-key demo](https://facewang753.github.io/finmirror/) and
   [Hugging Face dataset](https://huggingface.co/datasets/mingyang233/FinMirror).
 
