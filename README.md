@@ -31,14 +31,24 @@ licence-audited, expert-reviewed Canadian real-source pilot.
 
 ## Open-source work
 
-- [FinSight-AI PR #14](https://github.com/juanjuandog/FinSight-AI/pull/14) - adds an
-  ordered evidence-snapshot fingerprint to RAG traces; updated after maintainer review
-  with null-safe encoding, regression tests, and a documented hash boundary.
-- [TradingAgents PR #1179](https://github.com/TauricResearch/TradingAgents/pull/1179) -
-  proposes exact public-data run receipts for reproducible agent research.
+- **Merged:** [FinSight-AI PR #14](https://github.com/juanjuandog/FinSight-AI/pull/14)
+  adds an ordered evidence-snapshot fingerprint to RAG traces. I revised it after
+  maintainer review with null-safe encoding, regression tests, and a documented hash
+  boundary.
+- **Maintainer-facing patch:** [PydanticAI issue #7041](https://github.com/pydantic/pydantic-ai/issues/7041#issuecomment-5160501465)
+  reproduces a Vercel AI tool-approval response that is silently dropped and proposes a
+  compatibility-preserving fix with 219 passing tests
+  ([public branch](https://github.com/faceWang753/pydantic-ai/tree/fix/vercel-approval-response-validation)).
+- **Public fallback implementation:** [EdgarTools issue #922](https://github.com/dgunning/edgartools/issues/922)
+  adds fail-closed Schedule 14D-9 recommendation extraction, tested across 340 cases and
+  a real SEC cassette replay
+  ([public branch](https://github.com/faceWang753/edgartools/tree/feat/schedule-14d9-data-object)).
+- **Under review:** [TradingAgents PR #1179](https://github.com/TauricResearch/TradingAgents/pull/1179)
+  proposes machine-readable run manifests and honest replay boundaries for agent
+  research.
 
-Both are submitted upstream contributions. I list them as work under review, not merged
-features or endorsements.
+I distinguish merged work, work under review, and fallback branches so every claim is
+independently verifiable.
 
 ## What I am looking for
 
