@@ -42,6 +42,13 @@ licence-audited, expert-reviewed Canadian real-source pilot.
   compatibility-preserving type boundary. A third-party [fix PR #7079](https://github.com/pydantic/pydantic-ai/pull/7079)
   now implements that responded-part boundary; I independently verified its current
   head with 223 passing tests plus clean Ruff and Pyright checks.
+- **Awaiting maintainer alignment:** for [PydanticAI #7108](https://github.com/pydantic/pydantic-ai/issues/7108#issuecomment-5181209227)
+  I built and tested a trace-privacy fix that removes inline binary payloads across
+  instrumentation sinks without changing existing serialization fallbacks; for
+  [#7115](https://github.com/pydantic/pydantic-ai/issues/7115#issuecomment-5181276821)
+  I added deterministic `aclose()` propagation from UI encoding to the native agent
+  stream. Both public branches include regression tests and are waiting for assignment
+  before I open upstream PRs.
 - **Public fallback implementation:** [EdgarTools issue #922](https://github.com/dgunning/edgartools/issues/922)
   adds fail-closed Schedule 14D-9 recommendation extraction, tested across 340 cases and
   a real SEC cassette replay
