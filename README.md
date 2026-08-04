@@ -20,7 +20,9 @@ calculation operands, confidence, and abstention.
 - 126 cases, 108 paired interventions, 18 groups, and 6 finance workflows;
 - English, French, and Chinese controlled variants;
 - deterministic core evaluator - no LLM judge required;
-- 154 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- 156 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- a [drop-in GitHub Actions gate](https://github.com/faceWang753/finmirror/blob/main/docs/GITHUB_ACTION.md)
+  that blocks failed paired-world checks and publishes a reviewable reliability summary;
 - [zero-key demo](https://facewang753.github.io/finmirror/) and
   [Hugging Face dataset](https://huggingface.co/datasets/mingyang233/FinMirror).
 
@@ -35,10 +37,11 @@ licence-audited, expert-reviewed Canadian real-source pilot.
   adds an ordered evidence-snapshot fingerprint to RAG traces. I revised it after
   maintainer review with null-safe encoding, regression tests, and a documented hash
   boundary.
-- **Maintainer-facing patch:** [PydanticAI issue #7041](https://github.com/pydantic/pydantic-ai/issues/7041#issuecomment-5160501465)
-  reproduces a Vercel AI tool-approval response that is silently dropped and proposes a
-  compatibility-preserving fix with 219 passing tests
-  ([public branch](https://github.com/faceWang753/pydantic-ai/tree/fix/vercel-approval-response-validation)).
+- **Independent reproduction and review:** on [PydanticAI issue #7041](https://github.com/pydantic/pydantic-ai/issues/7041#issuecomment-5160501465)
+  I reproduced a silently dropped Vercel AI approval response and proposed a narrow,
+  compatibility-preserving type boundary. A third-party [fix PR #7079](https://github.com/pydantic/pydantic-ai/pull/7079)
+  now implements that responded-part boundary; I independently verified its current
+  head with 223 passing tests plus clean Ruff and Pyright checks.
 - **Public fallback implementation:** [EdgarTools issue #922](https://github.com/dgunning/edgartools/issues/922)
   adds fail-closed Schedule 14D-9 recommendation extraction, tested across 340 cases and
   a real SEC cassette replay
