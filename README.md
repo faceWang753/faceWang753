@@ -36,6 +36,10 @@ real-source lineage is now reproducible and licence-audited; its gold remains
 provisional until two independent finance reviewers and a blinded adjudicator complete
 the public review gate.
 
+Finance or economics practitioners can review the bounded seven-case packet through the
+[public expert-review path](https://github.com/faceWang753/finmirror/blob/main/docs/EXPERT_REVIEW_PACKET.md);
+uncertainty and disagreement are recorded rather than hidden.
+
 ## Open-source work
 
 - **Merged:** [FinSight-AI PR #14](https://github.com/juanjuandog/FinSight-AI/pull/14)
