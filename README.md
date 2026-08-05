@@ -20,7 +20,10 @@ calculation operands, confidence, and abstention.
 - 126 cases, 108 paired interventions, 18 groups, and 6 finance workflows;
 - English, French, and Chinese controlled variants;
 - deterministic core evaluator - no LLM judge required;
-- 156 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- 182 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- a hash-pinned Statistics Canada GDP calibration group with a reviewed open-licence
+  receipt, deterministic source extraction, six disclosed interventions, and a separate
+  expert-validation gate that currently fails closed;
 - a [drop-in GitHub Actions gate](https://github.com/faceWang753/finmirror/blob/main/docs/GITHUB_ACTION.md)
   that blocks failed paired-world checks and publishes a reviewable reliability summary;
 - [zero-key demo](https://facewang753.github.io/finmirror/) and
@@ -28,8 +31,10 @@ calculation operands, confidence, and abstention.
 
 The included evidence-blind control reaches 71.4% case accuracy and 0% strict pair
 reliability. That validates a narrow diagnostic protocol on synthetic data; it is not a
-claim that FinMirror measures real-world production safety. The next milestone is a
-licence-audited, expert-reviewed Canadian real-source pilot.
+claim that FinMirror measures real-world production safety. The first Canadian
+real-source lineage is now reproducible and licence-audited; its gold remains
+provisional until two independent finance reviewers and a blinded adjudicator complete
+the public review gate.
 
 ## Open-source work
 
@@ -56,6 +61,10 @@ licence-audited, expert-reviewed Canadian real-source pilot.
 - **Under review:** [TradingAgents PR #1179](https://github.com/TauricResearch/TradingAgents/pull/1179)
   proposes machine-readable run manifests and honest replay boundaries for agent
   research.
+- **Revision pushed:** [Dynamo security PR #1](https://github.com/handshake-project-dynamo/dynamo-2d8b317-security/pull/1)
+  fixes a verifier-import hijack identified by automated review. The patch moves the
+  verifier to a read-only directory and uses Python isolated mode; a local adversarial
+  probe confirmed that an agent-written `pytest.py` no longer executes.
 
 I distinguish merged work, work under review, and fallback branches so every claim is
 independently verifiable.
