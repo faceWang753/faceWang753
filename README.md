@@ -20,7 +20,7 @@ calculation operands, confidence, and abstention.
 - 126 cases, 108 paired interventions, 18 groups, and 6 finance workflows;
 - English, French, and Chinese controlled variants;
 - deterministic core evaluator - no LLM judge required;
-- 182 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- 196 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
 - a hash-pinned Statistics Canada GDP calibration group with a reviewed open-licence
   receipt, deterministic source extraction, six disclosed interventions, and a separate
   expert-validation gate that currently fails closed;
@@ -36,9 +36,11 @@ real-source lineage is now reproducible and licence-audited; its gold remains
 provisional until two independent finance reviewers and a blinded adjudicator complete
 the public review gate.
 
-Finance or economics practitioners can review the bounded seven-case packet through the
-[public expert-review path](https://github.com/faceWang753/finmirror/blob/main/docs/EXPERT_REVIEW_PACKET.md);
-uncertainty and disagreement are recorded rather than hidden.
+Finance or economics practitioners can use the
+[account-free blind-review app](https://facewang753.github.io/finmirror/review/) for the
+bounded seven-case packet. It reveals no gold labels or model outputs, keeps drafts in
+the browser, and exports a dataset-bound submission that FinMirror validates before
+adjudication; uncertainty and disagreement are recorded rather than hidden.
 
 ## Open-source work
 
