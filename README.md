@@ -20,7 +20,11 @@ calculation operands, confidence, and abstention.
 - 126 cases, 108 paired interventions, 18 groups, and 6 finance workflows;
 - English, French, and Chinese controlled variants;
 - deterministic core evaluator - no LLM judge required;
-- 196 tests, 94% coverage, typed Python, JSON Schemas, and CI on Python 3.10-3.12;
+- 274 tests, 92% measured coverage, strict typing, JSON Schemas, and CI on Python 3.10-3.12;
+- a provider-neutral retrieval/rerank assurance lane over all 126 cases that measures
+  complete-evidence coverage, harmful-passage exposure, and paired reliability before
+  generation; its Cohere Rerank adapter keeps hidden utility labels local and fails
+  closed on partial or malformed rankings;
 - a hash-pinned Statistics Canada GDP calibration group with a reviewed open-licence
   receipt, deterministic source extraction, six disclosed interventions, and a separate
   expert-validation gate that currently fails closed;
@@ -35,6 +39,11 @@ claim that FinMirror measures real-world production safety. The first Canadian
 real-source lineage is now reproducible and licence-audited; its gold remains
 provisional until two independent finance reviewers and a blinded adjudicator complete
 the public review gate.
+
+The separate retrieval demo shows why answer accuracy alone is insufficient: a
+zero-key lexical ranker reaches only 43.5% clean completion and exposes a harmful
+passage in 30.6% of evaluated prefixes. Those are synthetic control results, not
+Cohere model results; the complete packet and deterministic audit are reproducible.
 
 Finance or economics practitioners can use the
 [account-free blind-review app](https://facewang753.github.io/finmirror/review/) for the
