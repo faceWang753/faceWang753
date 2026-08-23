@@ -9,6 +9,25 @@ the right, reproducible reason?**
 
 ## What I am building
 
+[![EvalContract - deterministic release contracts for AI agent outputs](https://raw.githubusercontent.com/faceWang753/evalcontract/main/assets/evalcontract-social-card.svg)](https://github.com/faceWang753/evalcontract)
+
+### [EvalContract](https://github.com/faceWang753/evalcontract)
+
+EvalContract turns written AI-agent release criteria into a strict, reviewable CI gate over
+recorded outputs. Teams can declare amount, tool, evidence, latency, cost, escalation, and
+abstention boundaries in a small JSON contract, then block a release when a required case is
+missing or a declared property moves.
+
+- no model calls, API keys, telemetry, or changing judge behavior;
+- stable JSON evidence, pull-request summaries, and standalone HTML reports;
+- a [composite GitHub Action](https://github.com/faceWang753/evalcontract#github-action)
+  for existing repositories;
+- a [zero-key support-agent demo](https://facewang753.github.io/evalcontract/) covering a
+  bounded refund, an amount just outside approval, and prompt injection.
+
+I offer [fixed-scope release-gate setup and custom evaluation sprints](https://github.com/faceWang753/evalcontract/blob/main/docs/SERVICES.md)
+for teams that have agent outputs but no trustworthy executable release contract.
+
 [![FinMirror - paired-world reliability tests for financial RAG and agents](https://raw.githubusercontent.com/faceWang753/finmirror/main/assets/finmirror-social-card.png)](https://github.com/faceWang753/finmirror)
 
 ### [FinMirror](https://github.com/faceWang753/finmirror)
@@ -95,6 +114,11 @@ I am authorized to work in Canada and open to full-time or remote roles in:
 
 If you maintain an open-source RAG or agent project, I am also interested in small,
 reproducible contributions with a clearly defined integration seam.
+
+I am also available for fixed-scope agent evaluation work: release contracts, CI gates,
+boundary-case design, RAG evidence audits, and reproducible reliability review packets.
+The smallest [EvalContract implementation package](https://github.com/faceWang753/evalcontract/blob/main/docs/SERVICES.md)
+starts at CAD 650 for founding customers.
 
 ## Contact
 
