@@ -72,6 +72,13 @@ adjudication; uncertainty and disagreement are recorded rather than hidden.
 
 ## Open-source work
 
+- **CI green, under review:** [Click PR #3789](https://github.com/pallets/click/pull/3789)
+  fixes shell-completion usage errors leaking as tracebacks by moving completion
+  dispatch inside Click's standard exception boundary. The regression is covered
+  across Python 3.10-3.14, free-threaded 3.14, PyPy, Windows, macOS, typing, and docs CI.
+- **Under review:** [Inspect AI PR #4801](https://github.com/UKGovernmentBEIS/inspect_ai/pull/4801)
+  imports canonical Scout scan results into evaluation logs so scan evidence can
+  travel with the run record instead of remaining an out-of-band artifact.
 - **Merged:** [FinSight-AI PR #14](https://github.com/juanjuandog/FinSight-AI/pull/14)
   adds an ordered evidence-snapshot fingerprint to RAG traces. I revised it after
   maintainer review with null-safe encoding, regression tests, and a documented hash
