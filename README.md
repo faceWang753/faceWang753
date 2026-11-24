@@ -1,133 +1,73 @@
 # Mingyang (Ethan) Wang
 
-AI evaluation and software engineer in Toronto. I completed an M.Eng. focused on AI/ML
-at McMaster University in 2025, currently evaluate finance-focused LLM outputs, and
-previously built banking software and ML/data systems at ICBC.
-
-I care about a specific engineering question: **does an AI system reach the answer for
-the right, reproducible reason?**
+Data and AI engineer in Toronto. I build tools that give AI agents governed access to
+data, and tests that show where models and agent tools fail. Before that: three and a half
+years of banking software and data pipelines at ICBC, and an M.Eng. in AI/ML at McMaster
+(2025). I also evaluate finance-focused LLM responses on contract for Cohere.
 
 ## What I am building
 
-[![EvalContract - deterministic release contracts for AI agent outputs](https://raw.githubusercontent.com/faceWang753/evalcontract/main/assets/evalcontract-social-card.svg)](https://github.com/faceWang753/evalcontract)
+### [txn-dq-checks](https://github.com/faceWang753/txn-dq-checks)
 
-### [EvalContract](https://github.com/faceWang753/evalcontract)
+A PostgreSQL "trap" database of 641 bank transactions with 26 planted errors, 12 text-to-SQL
+tasks, and a grader that runs the model's SQL as a read-only role and compares result sets.
+The repo publishes the failing SQL from two models with root causes.
 
-EvalContract turns written AI-agent release criteria into a strict, reviewable CI gate over
-recorded outputs. Teams can declare amount, tool, evidence, latency, cost, escalation, and
-abstention boundaries in a small JSON contract, then block a release when a required case is
-missing or a declared property moves.
-
-- no model calls, API keys, telemetry, or changing judge behavior;
-- stable JSON evidence, pull-request summaries, and standalone HTML reports;
-- a [composite GitHub Action](https://github.com/faceWang753/evalcontract#github-action)
-  for existing repositories;
-- a [zero-key support-agent demo](https://facewang753.github.io/evalcontract/) covering a
-  bounded refund, an amount just outside approval, and prompt injection.
-
-I offer [fixed-scope release-gate setup and custom evaluation sprints](https://github.com/faceWang753/evalcontract/blob/main/docs/SERVICES.md)
-for teams that have agent outputs but no trustworthy executable release contract.
-
-[![FinMirror - paired-world reliability tests for financial RAG and agents](https://raw.githubusercontent.com/faceWang753/finmirror/main/assets/finmirror-social-card.png)](https://github.com/faceWang753/finmirror)
+It also holds [north_mcp](https://github.com/faceWang753/txn-dq-checks/tree/main/north_mcp),
+an MCP server that maps the calling user to a least-privilege PostgreSQL role and lets
+row-level security decide what they see. The same query returns 641 rows for one user and
+505 for another, with no SQL parsing in the server.
 
 ### [FinMirror](https://github.com/faceWang753/finmirror)
 
-FinMirror changes one fact in a controlled evidence world and checks whether a financial
-RAG system or agent updates the complete verifiable output: answer, citations,
-calculation operands, confidence, and abstention.
+A finance-agent benchmark of 126 cases. It changes one fact in a controlled evidence set and
+checks whether the agent's answer, citations and calculation change with it. The checks are
+deterministic; no LLM judge is needed. The data is synthetic, so a score says how a system
+behaves under this protocol, not how safe it is in production.
+[Demo](https://facewang753.github.io/finmirror/) |
+[Dataset](https://huggingface.co/datasets/mingyang233/FinMirror)
 
-- 126 cases, 108 paired interventions, 18 groups, and 6 finance workflows;
-- English, French, and Chinese controlled variants;
-- deterministic core evaluator - no LLM judge required;
-- 274 tests, 92% measured coverage, strict typing, JSON Schemas, and CI on Python 3.10-3.12;
-- a provider-neutral retrieval/rerank assurance lane over all 126 cases that measures
-  complete-evidence coverage, harmful-passage exposure, and paired reliability before
-  generation; its Cohere Rerank adapter keeps hidden utility labels local and fails
-  closed on partial or malformed rankings;
-- a hash-pinned Statistics Canada GDP calibration group with a reviewed open-licence
-  receipt, deterministic source extraction, six disclosed interventions, and a separate
-  expert-validation gate that currently fails closed;
-- a [drop-in GitHub Actions gate](https://github.com/faceWang753/finmirror/blob/main/docs/GITHUB_ACTION.md)
-  that blocks failed paired-world checks and publishes a reviewable reliability summary;
-- [zero-key demo](https://facewang753.github.io/finmirror/) and
-  [Hugging Face dataset](https://huggingface.co/datasets/mingyang233/FinMirror).
+### [EvalContract](https://github.com/faceWang753/evalcontract)
 
-The included evidence-blind control reaches 71.4% case accuracy and 0% strict pair
-reliability. That validates a narrow diagnostic protocol on synthetic data; it is not a
-claim that FinMirror measures real-world production safety. The first Canadian
-real-source lineage is now reproducible and licence-audited; its gold remains
-provisional until two independent finance reviewers and a blinded adjudicator complete
-the public review gate.
-
-The separate retrieval demo shows why answer accuracy alone is insufficient: a
-zero-key lexical ranker reaches only 43.5% clean completion and exposes a harmful
-passage in 30.6% of evaluated prefixes. Those are synthetic control results, not
-Cohere model results; the complete packet and deterministic audit are reproducible.
-
-Finance or economics practitioners can use the
-[account-free blind-review app](https://facewang753.github.io/finmirror/review/) for the
-bounded seven-case packet. It reveals no gold labels or model outputs, keeps drafts in
-the browser, and exports a dataset-bound submission that FinMirror validates before
-adjudication; uncertainty and disagreement are recorded rather than hidden.
+Turns written release criteria for an AI agent into a CI gate over recorded outputs: a small
+JSON contract, no model calls or API keys. [Demo](https://facewang753.github.io/evalcontract/)
 
 ## Open-source work
 
-- **CI green, under review:** [Click PR #3789](https://github.com/pallets/click/pull/3789)
-  fixes shell-completion usage errors leaking as tracebacks by moving completion
-  dispatch inside Click's standard exception boundary. The regression is covered
-  across Python 3.10-3.14, free-threaded 3.14, PyPy, Windows, macOS, typing, and docs CI.
-- **Under review:** [Inspect AI PR #4801](https://github.com/UKGovernmentBEIS/inspect_ai/pull/4801)
-  imports canonical Scout scan results into evaluation logs so scan evidence can
-  travel with the run record instead of remaining an out-of-band artifact.
-- **Merged:** [FinSight-AI PR #14](https://github.com/juanjuandog/FinSight-AI/pull/14)
-  adds an ordered evidence-snapshot fingerprint to RAG traces. I revised it after
-  maintainer review with null-safe encoding, regression tests, and a documented hash
-  boundary.
-- **Independent reproduction and review:** on [PydanticAI issue #7041](https://github.com/pydantic/pydantic-ai/issues/7041#issuecomment-5160501465)
-  I reproduced a silently dropped Vercel AI approval response and proposed a narrow,
-  compatibility-preserving type boundary. A third-party [fix PR #7079](https://github.com/pydantic/pydantic-ai/pull/7079)
-  now implements that responded-part boundary; I independently verified its current
-  head with 223 passing tests plus clean Ruff and Pyright checks.
-- **Awaiting maintainer alignment:** for [PydanticAI #7108](https://github.com/pydantic/pydantic-ai/issues/7108#issuecomment-5181209227)
-  I built and tested a trace-privacy fix that removes inline binary payloads across
-  instrumentation sinks without changing existing serialization fallbacks; for
-  [#7115](https://github.com/pydantic/pydantic-ai/issues/7115#issuecomment-5181276821)
-  I added deterministic `aclose()` propagation from UI encoding to the native agent
-  stream. Both public branches include regression tests and are waiting for assignment
-  before I open upstream PRs.
-- **Public fallback implementation:** [EdgarTools issue #922](https://github.com/dgunning/edgartools/issues/922)
-  adds fail-closed Schedule 14D-9 recommendation extraction, tested across 340 cases and
-  a real SEC cassette replay
-  ([public branch](https://github.com/faceWang753/edgartools/tree/feat/schedule-14d9-data-object)).
-- **Under review:** [TradingAgents PR #1179](https://github.com/TauricResearch/TradingAgents/pull/1179)
-  proposes machine-readable run manifests and honest replay boundaries for agent
-  research.
-- **Revision pushed:** [Dynamo security PR #1](https://github.com/handshake-project-dynamo/dynamo-2d8b317-security/pull/1)
-  fixes a verifier-import hijack identified by automated review. The patch moves the
-  verifier to a read-only directory and uses Python isolated mode; a local adversarial
-  probe confirmed that an agent-written `pytest.py` no longer executes.
+Open, waiting on maintainers:
 
-I distinguish merged work, work under review, and fallback branches so every claim is
-independently verifiable.
+- **Inspect AI** [PR #4801](https://github.com/UKGovernmentBEIS/inspect_ai/pull/4801):
+  `inspect score --from-scan` adds the results of a completed Inspect Scout scan to an eval
+  log as scores. It addresses an issue a maintainer accepted.
+- **postgres-mcp** [#243](https://github.com/crystaldba/postgres-mcp/issues/243),
+  [#244](https://github.com/crystaldba/postgres-mcp/issues/244) and
+  [PR #245](https://github.com/crystaldba/postgres-mcp/pull/245): restricted mode has no row
+  cap, and failed queries are not flagged as tool errors. The PR fixes the second.
+- **Cohere North MCP SDK** [#60](https://github.com/cohere-ai/north-mcp-python-sdk/issues/60):
+  the auth example says endpoints require authentication, but the default server accepts
+  calls with no identity.
+
+Resolved:
+
+- **PydanticAI** [#7108](https://github.com/pydantic/pydantic-ai/issues/7108): I raised a
+  regression concern about a trace-privacy fix. The fix's author found part of it wrong and
+  part of it "a real bug we would have shipped", and fixed that part before
+  [PR #7131](https://github.com/pydantic/pydantic-ai/pull/7131) merged.
+
+Reproductions and review:
+
+- **PydanticAI** [#7041](https://github.com/pydantic/pydantic-ai/issues/7041): reproduced a
+  silently dropped approval response and checked the third-party fix in
+  [PR #7079](https://github.com/pydantic/pydantic-ai/pull/7079), which is still open.
+
+I use AI coding tools and say so in each pull request.
 
 ## What I am looking for
 
-I am authorized to work in Canada and open to full-time or remote roles in:
-
-- AI/LLM evaluation and research engineering;
-- applied ML and financial AI;
-- RAG/agent reliability, data quality, and evaluation infrastructure;
-- backend or ML-platform engineering with strong testing and observability.
-
-If you maintain an open-source RAG or agent project, I am also interested in small,
-reproducible contributions with a clearly defined integration seam.
-
-I am also available for fixed-scope agent evaluation work: release contracts, CI gates,
-boundary-case design, RAG evidence audits, and reproducible reliability review packets.
-The smallest [EvalContract implementation package](https://github.com/faceWang753/evalcontract/blob/main/docs/SERVICES.md)
-starts at CAD 650 for founding customers.
+Forward-deployed, solutions and applied AI engineering roles: work where I take a model or
+an agent into a customer's data and make it reliable there. I am authorized to work in
+Canada.
 
 ## Contact
 
-- [LinkedIn](https://www.linkedin.com/in/mingyang-wang-8867aa2a9)
-- [Email](mailto:mingyangwang233@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/ethan-wang-8867aa2a9/) | [Email](mailto:mingyangwang233@gmail.com)
